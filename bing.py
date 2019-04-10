@@ -14,7 +14,9 @@ import threading
 import time
 import sys
 
-bing_api_key = "33dc79325d1b48e3b20c094d227e8cce"
+with open('api_key.txt','r') as api_file:
+    bing_api_key = api_file.readline()
+    
 gverbose = False
 
 
