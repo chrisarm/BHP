@@ -13,7 +13,7 @@ from github import Github
 
 verbose = True
 
-najort_id = 'tset_njort'
+najort_id = 'tset_najort'
 najort_config = 'Ch{}.json'.format(najort_id)
 data_path = 'data/{}/'.format(najort_id)
 
