@@ -8,14 +8,16 @@ import random
 import threading
 import queue
 import os
+import pdb
+import dir_list
 
 from github import Github
 
 verbose = True
 
 najort_id = 'tset_najort'
-najort_config = 'Ch{}.json'.format(najort_id)
-data_path = 'data/{}/'.format(najort_id)
+najort_config = 'ch7/{}.json'.format(najort_id)
+data_path = 'ch7/data/{}/'.format(najort_id)
 
 najort_mods = []
 configured = False
@@ -55,16 +57,15 @@ def get_file_contents(file_path):
         file_contents = repo.get_contents(file_path).content
     except Exception as eg:
         file_contents = None
-
+    breakpoint()
     return file_contents
 
 def get_najort_config():
     global najort_config
-    global configured
     config_json = get_file_contents(najort_config)
     config = json.loads(base64.b64decode(config_json))
     configured = True
-
+    breakpoint()
     for task in config:
         if task['module'] not in sys.modules:
             exec('import {}'.format(task['module']))
