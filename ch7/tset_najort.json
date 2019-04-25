@@ -1,8 +1,8 @@
 [
     {
-        "module" : "dir_list"
+        "module" : "modules.dir_list"
     },
     {
-        "module" : "environment"
+        "module" : "modules.environment"
     }
 ]
