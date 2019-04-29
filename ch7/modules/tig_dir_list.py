@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import os
+from os import listdir
 
 
 def run(**args):
     print('[*] In dir_list module.')
-    files = os.listdir('.')
+    files = listdir('.')
     return str(files)

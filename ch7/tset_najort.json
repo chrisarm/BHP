@@ -1,8 +1,8 @@
 [
     {
-        "module" : "modules.dir_list"
+        "module" : "modules.tig_dir_list"
     },
     {
-        "module" : "modules.environment"
+        "module" : "modules.tig_environment"
     }
 ]
