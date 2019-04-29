@@ -90,8 +90,8 @@ def store_module_result(data):
     remote_path = 'ch7/data/{}/{}.dat'.format(
         najort_id,
         random.randint(1000, 10000))
-    repo.create_file(remote_path, 'Mods Results', base64.b64encode(data))
-    vprint('Module data saved')
+    vprint('Saving module data: {}'.format(data))
+    repo.create_file(remote_path, b'Moar Mods Results', base64.b64encode(data))
     return
 
 
