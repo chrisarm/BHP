@@ -91,7 +91,7 @@ def store_module_result(data):
         najort_id,
         random.randint(1000, 10000))
     vprint('Saving module data: {}'.format(data))
-    repo.create_file(remote_path, b'Moar Mods Results', base64.b64encode(data))
+    repo.create_file(remote_path, 'Moar Mods Results', data)
     return
 
 
