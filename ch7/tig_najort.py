@@ -7,14 +7,16 @@ import importlib
 import random
 import threading
 import queue
-import imp
+import importlib
 
 from github import Github
+
+import encrypt
 
 verbose = True
 
 # Access token needs to be the first line in file
-access_token_path = 'access_token.txt'
+access_token_path = 'access_token.txt.enc'
 najort_id = 'tset_najort'
 najort_config = 'ch7/{}.json'.format(najort_id)
 data_path = 'ch7/data/{}/'.format(najort_id)
@@ -34,14 +36,17 @@ def vprint(verbose_string, lverbose=False):
         print('[{}] {}'.format(icon, verbose_string), flush=True)
 
 
-def connect_to_github():
+def connect_to_github(access_token_path=access_token_path):
     hg = None
-    with open(access_token_path, 'r') as token_file:
-        access_token = token_file.readline()
-        if len(access_token) == 40:
-            hg = Github(access_token)
-        else:
-            exit(0)
+    if access_token_path.endswith('.enc'):
+        access_token = encrypt.decrypt_file(access_token_path, 'bhp1BHP!')
+    else:
+        with open(access_token_path, 'r') as token_file:
+            access_token = token_file.readline()
+    if len(access_token) == 40:
+        hg = Github(access_token)
+    else:
+        exit(0)
     repo = hg.get_repo('chrisarm/BHP')
     branch = repo.get_branch(branch='master')
     vprint(repo)
@@ -98,7 +103,7 @@ def module_runner(module):
     return
 
 
-class GitImporter(object):
+class GitImporter:
 
     def __init__(self):
         self.current_module_code = ''
@@ -119,11 +124,7 @@ class GitImporter(object):
             return sys.modules[name]
         elif isinstance(name, str):
             try:
-                # module = importlib.import_module(name)
-                module = imp.new_module(name)
-                exec(self.current_module_code in module.__dict__)
-                sys.modules[name] = module
-
+                module = importlib.import_module(name)
                 return module
             except Exception as elm:
                 vprint('Unable to load module. {}'.format(elm))

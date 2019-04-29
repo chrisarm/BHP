@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os.environ
+import os
 
 
 def run(**args):
