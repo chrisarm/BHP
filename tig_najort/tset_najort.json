@@ -1,0 +1,10 @@
+[
+    {
+        "module" : "modules.tig_dir_list",
+        "test" : "True"
+    },
+    {
+        "module" : "modules.tig_environment",
+        "test" : "True"
+    }
+]
