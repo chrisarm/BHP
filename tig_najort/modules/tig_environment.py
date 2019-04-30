@@ -2,9 +2,9 @@
 import os
 
 
-def run(**args):
+def run(**args, test=False):
     print('[*] In environment module')
-    if 'test' in args:
+    if test:
         return 'Environment variables could be printed'
     else:
         return str(os.environ)
