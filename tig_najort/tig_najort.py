@@ -107,7 +107,7 @@ def store_module_result(data, repository=''):
     return
 
 
-def module_runner(module,test):
+def module_runner(module, test):
     task_queue.put(1)
     result = sys.modules[module].run(test)
     task_queue.get()
