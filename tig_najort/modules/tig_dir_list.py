@@ -2,9 +2,9 @@
 from os import listdir
 
 
-def run(**args):
+def run(**args, test=False):
     print('[*] In dir_list module.')
-    if 'test' in args.items():
+    if test:
         return 'Directory listing could be here'
     else:
         files = listdir('.')
