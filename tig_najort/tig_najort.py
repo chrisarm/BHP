@@ -111,12 +111,10 @@ def store_module_result(data, repository=''):
 
 def module_runner(module, test):
     task_queue.put(1)
-
     if test == 'True':
         test = True
     else:
         test = False
-
     result = sys.modules[module].run(test=test)
     task_queue.get()
     store_module_result(result)
@@ -174,7 +172,7 @@ def main():
                         target=module_runner,
                         args=(task['module'], task['test']))
                     t.start()
-                    time.sleep(random.randint(1, 10))
+                    time.sleep(random.randint(100, 101))
         time.sleep(random.randint(100, 1000))
 
 
