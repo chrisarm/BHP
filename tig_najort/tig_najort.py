@@ -172,7 +172,7 @@ def main():
                         target=module_runner,
                         args=(task['module'], task['test']))
                     t.start()
-                    time.sleep(random.randint(100, 101))
+                    time.sleep(random.randint(3, 10))
         time.sleep(random.randint(100, 1000))
 
 
