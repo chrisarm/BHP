@@ -199,8 +199,8 @@ for small files(less than a few MB).
 Notes:
 ** Please test decryption before deleting the orginal file.
 This module is only meant to provide a way to encrypt small files
-in an efficient manner. Keep the custom.salt file and
-password in a safe place.
+in an efficient manner. Keep the custom.salt file protected and
+remember or save the password in a safe place.
 
 Files encrypted using AES-128.
 

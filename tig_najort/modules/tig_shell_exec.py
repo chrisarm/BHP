@@ -4,7 +4,7 @@ import subprocess
 
 
 def run(**args):
-    if 'test' in args and args['test']==True:
+    if 'test' in args and args['test'] is True:
         return 'Shell code could be running'
     if 'url' in args:
         url = args['url']
