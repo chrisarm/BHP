@@ -13,9 +13,10 @@ from github import Github
 
 import encrypt
 
-verbose = True
+# Set to true to get more print statements
+verbose = False
 
-# Access token needs to be the first line in file
+# Git access token needs to be the first line in file
 access_token_path = 'access_token.txt.enc'
 repository = 'chrisarm/BHP'
 access_token_pass = 'bhp1BHP!'
