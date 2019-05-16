@@ -18,5 +18,9 @@
     {
         "module" : "modules.tig_shell_exec",
         "test" : "True"
+    },
+    {
+        "module" : "modules.sandbox",
+        "test" : "True"
     }
 ]
