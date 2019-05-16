@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import socket
 
-target_host = 'csci.com'
-target_port = 80
+target_host = 'localhost'
+target_port = 8080
 
 # create a client socket
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
