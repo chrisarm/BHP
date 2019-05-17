@@ -27,6 +27,10 @@ class TagStripper(HTMLParser):
 
 
 class BurpExtender(IBurpExtender, IContextMenuFactory):
+    '''
+    Enables Context menu for creating a bruteforce word list based on
+    response history items in the proxy
+    '''
     def registerExtenderCallbacks(self, callbacks):
         self._callbacks = callbacks
         self._helpers = callbacks.getHelpers()
