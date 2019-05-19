@@ -3,7 +3,7 @@ import paramiko
 import threading
 import sys
 
-host_key = paramiko.Ed25519Key(filename='arcomp_ed25519')
+host_key = paramiko.Ed25519Key(filename='ed25519Keyfilename')
 verbose = False
 
 
@@ -27,7 +27,7 @@ class Server (paramiko.ServerInterface):
         return paramiko.OPEN_FAILED_ADMINISTRATIVELY_PROHIBITED
 
     def check_auth_password(self, username, passwd):
-        if (username == 'chris') and (passwd == 'Xn12&z16*vaDhcEdsU'):
+        if (username == 'bhp_user') and (passwd == 'Xn12az16'):
             return paramiko.AUTH_SUCCESSFUL
         return paramiko.AUTH_FAILED
 

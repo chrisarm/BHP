@@ -27,4 +27,4 @@ def ssh_command(ip, user, passwd, command):
     return
 
 
-ssh_command('10.1.22.107', 'chris', 'Xn12&z16*vaDhcEdsU', 'ClientConnected')
+ssh_command('192.168.1.101', 'bhp_user', 'Xn12az16', 'ClientConnected')

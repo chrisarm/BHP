@@ -1,7 +1,7 @@
 asn1crypto>=0.24.0
 bcrypt>=3.1.6
 certifi>=2019.3.9
-cffi>=1.12.2
+cffi>=1.12.3
 chardet>=3.0.4
 cryptography>=2.6.1
 Deprecated>=1.2.5
@@ -9,8 +9,8 @@ HTMLParser>=0.0.2
 idna>=2.8
 jwcrypto>=0.6.0
 netaddr>=0.7.19
-numpy>=1.16.2
-opencv-python>=4.0.0.21
+numpy>=1.16.3
+opencv-python>=4.1.0.25
 paramiko>=2.4.2
 pyasn1>=0.4.5
 pycparser>=2.19
@@ -22,5 +22,5 @@ requests>=2.21.0
 scapy>=2.4.2
 six>=1.12.0
 uritemplate>=3.0.0
-urllib3==1.24.2
+urllib3>=1.24.2
 wrapt>=1.11.1

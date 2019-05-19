@@ -1,0 +1,196 @@
+{
+  "webPages": {
+    "totalEstimatedMatches": 55, 
+    "webSearchUrl": "https://www.bing.com/search?q=ip%3a176.28.50.165", 
+    "value": [
+      {
+        "snippet": "Posters Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec molestie. Sed aliquam sem ut arcu. Phasellus sollicitudin. Vestibulum condimentum facilisis nulla.", 
+        "isNavigational": false, 
+        "isFamilyFriendly": true, 
+        "dateLastCrawled": "2019-04-06T17:41:00.0000000Z", 
+        "language": "la", 
+        "url": "http://testphp.vulnweb.com/categories.php", 
+        "displayUrl": "testphp.vulnweb.com/categories.php", 
+        "name": "picture categories - testphp.vulnweb.com", 
+        "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.0"
+      }, 
+      {
+        "snippet": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec molestie. Sed aliquam sem ut arcu. Phasellus sollicitudin. Vestibulum condimentum facilisis nulla.", 
+        "isNavigational": false, 
+        "isFamilyFriendly": true, 
+        "dateLastCrawled": "2019-04-06T08:28:00.0000000Z", 
+        "language": "la", 
+        "url": "http://testphp.vulnweb.com/artists.php?artist=1", 
+        "displayUrl": "testphp.vulnweb.com/artists.php?artist=1", 
+        "name": "artists - testphp.vulnweb.com", 
+        "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.1"
+      }, 
+      {
+        "snippet": "Vulnerable HTML5 test website for Acunetix Web Vulnerability Scanner.. Login", 
+        "isNavigational": false, 
+        "isFamilyFriendly": true, 
+        "dateLastCrawled": "2019-04-05T03:13:00.0000000Z", 
+        "language": "en", 
+        "url": "http://testhtml5.vulnweb.com/", 
+        "displayUrl": "testhtml5.vulnweb.com", 
+        "name": "SecurityTweets - HTML5 test website for Acunetix Web ...", 
+        "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.2"
+      }, 
+      {
+        "snippet": "check. Original article", 
+        "isNavigational": false, 
+        "isFamilyFriendly": true, 
+        "dateLastCrawled": "2019-03-04T04:00:00.0000000Z", 
+        "language": "en", 
+        "url": "http://176.28.50.165/hpp/", 
+        "displayUrl": "176.28.50.165/hpp", 
+        "name": "HTTP Parameter Pollution Example", 
+        "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.3"
+      }, 
+      {
+        "snippet": "artists | categories | titles | send xml | setcookie | categories | titles | send xml | setcookie", 
+        "isNavigational": false, 
+        "isFamilyFriendly": true, 
+        "language": "en", 
+        "url": "http://php.vulnweb.com/AJAX/index.php", 
+        "displayUrl": "php.vulnweb.com/AJAX/index.php", 
+        "name": "ajax test - php.vulnweb.com", 
+        "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.4"
+      }, 
+      {
+        "snippet": "HTML5 test website for Acunetix Web Vulnerability Scanner. Action; Response; Acunetix; Website; Blog; Facebook; Twitter; Thank you very much for your feedback!", 
+        "isNavigational": false, 
+        "isFamilyFriendly": true, 
+        "dateLastCrawled": "2019-03-27T21:14:00.0000000Z", 
+        "language": "en", 
+        "url": "http://testhtml5.vulnweb.com/like", 
+        "displayUrl": "testhtml5.vulnweb.com/like", 
+        "name": "SecurityTweets", 
+        "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.5"
+      }, 
+      {
+        "snippet": "Name URL Technologies; SecurityTweets: http://testhtml5.vulnweb.com: nginx, Python, Flask, CouchDB: Acuart: http://testphp.vulnweb.com: Apache, PHP, MySQL: Acuforum", 
+        "isNavigational": false, 
+        "isFamilyFriendly": true, 
+        "dateLastCrawled": "2019-04-06T11:54:00.0000000Z", 
+        "language": "en", 
+        "url": "http://www.vulnweb.com/", 
+        "displayUrl": "www.vulnweb.com", 
+        "name": "Acunetix Web Vulnerability Scanner - Test websites", 
+        "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.6"
+      }, 
+      {
+        "snippet": "TEST and Demonstration site for Acunetix Web Vulnerability Scanner. home | categories | artists | disclaimer | your cart | guestbook | AJAX Demo", 
+        "isNavigational": false, 
+        "isFamilyFriendly": true, 
+        "dateLastCrawled": "2019-04-04T13:10:00.0000000Z", 
+        "language": "en", 
+        "url": "http://testephp.vulnweb.com/guestbook.php", 
+        "displayUrl": "testephp.vulnweb.com/guestbook.php", 
+        "name": "Our guestbook - vulnweb.com", 
+        "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.7"
+      }, 
+      {
+        "snippet": "TEST and Demonstration site for Acunetix Web Vulnerability Scanner. home | categories | artists | disclaimer | your cart | guestbook | AJAX Demo", 
+        "isNavigational": false, 
+        "isFamilyFriendly": true, 
+        "language": "en", 
+        "url": "http://176.28.50.165/artists.php", 
+        "displayUrl": "176.28.50.165/artists.php", 
+        "name": "artists - 176.28.50.165", 
+        "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.8"
+      }, 
+      {
+        "snippet": "TEST and Demonstration site for Acunetix Web Vulnerability Scanner. home | categories | artists | disclaimer | your cart | guestbook | AJAX Demo", 
+        "isNavigational": false, 
+        "isFamilyFriendly": true, 
+        "dateLastCrawled": "2019-04-04T02:51:00.0000000Z", 
+        "language": "en", 
+        "url": "http://www.test.vulnweb.com/guestbook.php", 
+        "displayUrl": "www.test.vulnweb.com/guestbook.php", 
+        "name": "Our guestbook - test.vulnweb.com", 
+        "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.9"
+      }
+    ]
+  }, 
+  "queryContext": {
+    "originalQuery": "ip:176.28.50.165"
+  }, 
+  "_type": "SearchResponse", 
+  "rankingResponse": {
+    "mainline": {
+      "items": [
+        {
+          "answerType": "WebPages", 
+          "resultIndex": 0, 
+          "value": {
+            "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.0"
+          }
+        }, 
+        {
+          "answerType": "WebPages", 
+          "resultIndex": 1, 
+          "value": {
+            "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.1"
+          }
+        }, 
+        {
+          "answerType": "WebPages", 
+          "resultIndex": 2, 
+          "value": {
+            "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.2"
+          }
+        }, 
+        {
+          "answerType": "WebPages", 
+          "resultIndex": 3, 
+          "value": {
+            "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.3"
+          }
+        }, 
+        {
+          "answerType": "WebPages", 
+          "resultIndex": 4, 
+          "value": {
+            "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.4"
+          }
+        }, 
+        {
+          "answerType": "WebPages", 
+          "resultIndex": 5, 
+          "value": {
+            "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.5"
+          }
+        }, 
+        {
+          "answerType": "WebPages", 
+          "resultIndex": 6, 
+          "value": {
+            "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.6"
+          }
+        }, 
+        {
+          "answerType": "WebPages", 
+          "resultIndex": 7, 
+          "value": {
+            "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.7"
+          }
+        }, 
+        {
+          "answerType": "WebPages", 
+          "resultIndex": 8, 
+          "value": {
+            "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.8"
+          }
+        }, 
+        {
+          "answerType": "WebPages", 
+          "resultIndex": 9, 
+          "value": {
+            "id": "https://api.cognitive.microsoft.com/api/v7/#WebPages.9"
+          }
+        }
+      ]
+    }
+  }
+}

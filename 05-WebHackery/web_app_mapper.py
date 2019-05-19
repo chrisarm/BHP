@@ -6,10 +6,11 @@ import queue
 import threading
 import os
 import requests
+import time
 
 threads = 10
 
-target = 'http://172.28.128.3'
+target = 'http://172.28.128.3'  # local Damn Vulnerable Web App VM
 directory = 'webmapper'
 filters = ['.jpg', '.gif', '.png', '.css']
 
@@ -45,3 +46,4 @@ for i in range(threads):
     print('Thread: {}'.format(i))
     t = threading.Thread(target=test_remote)
     t.start()
+    time.sleep(0.5)

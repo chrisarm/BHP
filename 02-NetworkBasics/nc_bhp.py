@@ -20,37 +20,44 @@ def vprint(verbose_string):
 def send_msg(sock, msg, frmt=''):
     '''Handle sending messages along with the message length'''
     # Prefix each message with a 8-byte length (network byte order)
+    vprint('Sending message')
     if not isinstance(msg, bytes):
         msg = msg.encode()
 
     if frmt == 'C7':
         msg = frmt.encode() + struct.pack('>Q', len(msg)) + msg
     sock.sendall(msg)
-
+    vprint('Message Sent')
 
 def recv_msg(sock, frmt=''):
     '''Handle receiving messages along with the message length'''
     # Read message length and unpack it into an integer
-    raw_msglen = recvall(sock, 10)
-    if not raw_msglen:
-        return None
-    # Handle custom messages from this server/client combo
-    elif 'C7'.encode() in raw_msglen:
-        msglen = struct.unpack('>Q', raw_msglen[2:10])[0]
-        # Read the message data
-        data = recvall(sock, msglen)
-    # Handle all other message
-    else:
-        data = raw_msglen
-        while raw_msglen:
-            raw_msg = sock.recv(4096)
-            data += raw_msg
-            if len(raw_msg) < 4096:
-                break
-    # Return decoded text rather than bytes by default
-    if isinstance(frmt, str):
-        data = data.decode()
-    return data
+    try:
+        raw_msglen = recvall(sock, 10)
+        if not raw_msglen:
+            return None
+        
+        vprint('Receiving message.')
+        # Handle custom messages from this server/client combo
+        if 'C7'.encode() in raw_msglen:
+            msglen = struct.unpack('>Q', raw_msglen[2:10])[0]
+            # Read the message data
+            data = recvall(sock, msglen)
+        # Handle all other message
+        else:
+            data = raw_msglen
+            while raw_msglen:
+                raw_msg = sock.recv(4096)
+                data += raw_msg
+                if len(raw_msg) < 4096:
+                    data += raw_msg
+                    break
+        # Return decoded text rather than bytes by default
+        if isinstance(frmt, str):
+            data = data.decode()
+        return data
+    except Exception:
+        raise
 
 
 def recvall(sock, n):
@@ -63,7 +70,10 @@ def recvall(sock, n):
                 return None
             data += packet
     except ConnectionResetError as cre:
+        vprint('Receive all failed')
         return None
+    except Exception:
+        raise
     return data
 
 
@@ -227,7 +237,7 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=(
             '''
-Ncat replacement.
+nc mimickry.
 Examples:
 1) nc_bhp.py -t target_host -p port
 2) nc_bhp.py -t target_address -p port [-s shell]
@@ -295,9 +305,8 @@ Examples:
         listen = True
 
     if nc_bhp_args.target_host:
-        target_addr = nc_bhp_args.target_host
-        vprint('Target host {ip}'.format(ip=target_addr))
         target = nc_bhp_args.target_host
+        vprint('Target host {ip}'.format(ip=target))
 
     if nc_bhp_args.port:
         port = int(nc_bhp_args.port)
@@ -315,6 +324,7 @@ Examples:
     # If connecting to target host
     if len(target) and port > 0:
         # Read in buffer
+        vprint('CTRL-D to start')
         client_sender(stdin.read(), target, port, frmt)
     elif listen:
         server_mode(listen_addr, port, execute, upload, shell)
